@@ -30,7 +30,6 @@ def get_free_proxies(driver):
     
     return proxies
 
-
 free_proxies = get_free_proxies(driver)
 
 print('free_proxies:' + free_proxies[0]['IP Address']+':'+free_proxies[0]['Port'])
@@ -39,7 +38,7 @@ options = Options()
 options.add_experimental_option=True
 
 webBrowser = webdriver.Chrome(options=options)
-url = 'https://www.youtube.com/watch?v=Rn-XbNq6VAs&ab_channel=Canalemdia'
+url = 'https://www.youtube.com/watch?v=83aDkl2dn9c'
 
 def open_new_tab(url, tab_number):
     webBrowser.execute_script("window.open('about:blank', "+ str(tab_number) +");")
@@ -47,8 +46,9 @@ def open_new_tab(url, tab_number):
     webBrowser.get(url)
 
 while True:
-    for i in range(10):
+    for i in range(100):
         options.add_argument('--proxy-server=http://%s' % free_proxies[i]['IP Address']+':'+free_proxies[i]['Port'])
+        print('free_proxies:' + free_proxies[i]['IP Address']+':'+free_proxies[i]['Port'])
         open_new_tab(url, i)
         time.sleep(5)
         if i == 0:
